@@ -30,7 +30,6 @@ import javax.persistence.Table;
     @NamedQuery(name = "Company.findByMarketvalue", query = "SELECT c FROM Company c WHERE c.marketvalue = :marketvalue")})
 public class Company extends Infoentity implements Serializable {
 
-//    private static final long serialVersionUID = 1L;
     @Basic(optional = false)
     @Column(name = "c_name")
     private String cName;
@@ -45,11 +44,6 @@ public class Company extends Infoentity implements Serializable {
     @Basic(optional = false)
     @Column(name = "marketvalue")
     private int marketvalue;
-//    @JoinColumns({
-//        @JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false),
-//        @JoinColumn(name = "email", referencedColumnName = "email", insertable = false, updatable = false)})
-//    @OneToOne(optional = false)
-//    private Infoentity infoentity;
 
     public Company() {
     }

@@ -50,6 +50,7 @@ public class Infoentity implements Serializable {
     @OneToMany
     @JoinColumn(name = "xx")
     private Collection<Phone> phones = new ArrayList();
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "infoentity")
     private Collection<Address> addresses;
     

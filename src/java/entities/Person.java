@@ -6,9 +6,12 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -32,13 +35,8 @@ public class Person extends Infoentity implements Serializable {
     @Basic(optional = false)
     @Column(name = "lastname")
     private String lastname;
-//    @JoinColumns({
-//        @JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false),
-//        @JoinColumn(name = "email", referencedColumnName = "email")})
-//    @ManyToOne(optional = false)
-//    private Infoentity infoentity;
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "person")
-//    private Collection<Personhobby> personhobbyCollection;
+    @ManyToMany
+    private List<Hobby> hobbylist = new ArrayList();
 
     public Person() {
     }
