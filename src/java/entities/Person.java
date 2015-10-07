@@ -31,12 +31,9 @@ import javax.persistence.Table;
     @NamedQuery(name = "Person.findByPId", query = "SELECT p FROM Person p WHERE p.pId = :pId"),
     @NamedQuery(name = "Person.findByFirstname", query = "SELECT p FROM Person p WHERE p.firstname = :firstname"),
     @NamedQuery(name = "Person.findByLastname", query = "SELECT p FROM Person p WHERE p.lastname = :lastname")})
-public class Person implements Serializable {
+public class Person extends Infoentity implements Serializable {
+
     private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @Column(name = "p_id")
-    private Integer pId;
     @Basic(optional = false)
     @Column(name = "firstname")
     private String firstname;
@@ -54,22 +51,9 @@ public class Person implements Serializable {
     public Person() {
     }
 
-    public Person(Integer pId) {
-        this.pId = pId;
-    }
-
-    public Person(Integer pId, String firstname, String lastname) {
-        this.pId = pId;
+    public Person(String firstname, String lastname) {
         this.firstname = firstname;
         this.lastname = lastname;
-    }
-
-    public Integer getPId() {
-        return pId;
-    }
-
-    public void setPId(Integer pId) {
-        this.pId = pId;
     }
 
     public String getFirstname() {
@@ -105,28 +89,8 @@ public class Person implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (pId != null ? pId.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Person)) {
-            return false;
-        }
-        Person other = (Person) object;
-        if ((this.pId == null && other.pId != null) || (this.pId != null && !this.pId.equals(other.pId))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
     public String toString() {
-        return "entities.Person[ pId=" + pId + " ]";
+        return "entities.Person[ id=" + this.getId() + " ]";
     }
-    
+
 }

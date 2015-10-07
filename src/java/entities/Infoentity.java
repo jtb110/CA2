@@ -6,14 +6,14 @@
 package entities;
 
 import java.io.Serializable;
-import java.util.Collection;
-import javax.persistence.CascadeType;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -21,69 +21,44 @@ import javax.persistence.Table;
  * @author noncowi
  */
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "infoentities")
 @NamedQueries({
     @NamedQuery(name = "Infoentity.findAll", query = "SELECT i FROM Infoentity i"),
     @NamedQuery(name = "Infoentity.findByIeId", query = "SELECT i FROM Infoentity i WHERE i.infoentityPK.ieId = :ieId"),
     @NamedQuery(name = "Infoentity.findByEmail", query = "SELECT i FROM Infoentity i WHERE i.infoentityPK.email = :email")})
 public class Infoentity implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @EmbeddedId
-    protected InfoentityPK infoentityPK;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "infoentity")
-    private Collection<Person> personCollection;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "infoentity")
-    private Company company;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "infoentity")
-    private Collection<Phone> phoneCollection;
+ @Id
+ @GeneratedValue(strategy =
+GenerationType.AUTO)
+ private Long id;
+ private String email;
+ //Getters Setters
+
 
     public Infoentity() {
     }
 
-    public Infoentity(InfoentityPK infoentityPK) {
-        this.infoentityPK = infoentityPK;
+    public Long getId() {
+        return id;
     }
 
-    public Infoentity(int ieId, String email) {
-        this.infoentityPK = new InfoentityPK(ieId, email);
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public InfoentityPK getInfoentityPK() {
-        return infoentityPK;
+    public String getEmail() {
+        return email;
     }
 
-    public void setInfoentityPK(InfoentityPK infoentityPK) {
-        this.infoentityPK = infoentityPK;
-    }
-
-    public Collection<Person> getPersonCollection() {
-        return personCollection;
-    }
-
-    public void setPersonCollection(Collection<Person> personCollection) {
-        this.personCollection = personCollection;
-    }
-
-    public Company getCompany() {
-        return company;
-    }
-
-    public void setCompany(Company company) {
-        this.company = company;
-    }
-
-    public Collection<Phone> getPhoneCollection() {
-        return phoneCollection;
-    }
-
-    public void setPhoneCollection(Collection<Phone> phoneCollection) {
-        this.phoneCollection = phoneCollection;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (infoentityPK != null ? infoentityPK.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -94,7 +69,7 @@ public class Infoentity implements Serializable {
             return false;
         }
         Infoentity other = (Infoentity) object;
-        if ((this.infoentityPK == null && other.infoentityPK != null) || (this.infoentityPK != null && !this.infoentityPK.equals(other.infoentityPK))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -102,7 +77,7 @@ public class Infoentity implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Infoentity[ infoentityPK=" + infoentityPK + " ]";
+        return "entities.Infoentity[ id=" + id + " ]";
     }
     
 }

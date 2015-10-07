@@ -32,10 +32,9 @@ import javax.persistence.Table;
     @NamedQuery(name = "Company.findByCvr", query = "SELECT c FROM Company c WHERE c.cvr = :cvr"),
     @NamedQuery(name = "Company.findByNumemployees", query = "SELECT c FROM Company c WHERE c.numemployees = :numemployees"),
     @NamedQuery(name = "Company.findByMarketvalue", query = "SELECT c FROM Company c WHERE c.marketvalue = :marketvalue")})
-public class Company implements Serializable {
+public class Company extends Infoentity implements Serializable {
+
     private static final long serialVersionUID = 1L;
-    @EmbeddedId
-    protected CompanyPK companyPK;
     @Basic(optional = false)
     @Column(name = "c_name")
     private String cName;
@@ -59,28 +58,11 @@ public class Company implements Serializable {
     public Company() {
     }
 
-    public Company(CompanyPK companyPK) {
-        this.companyPK = companyPK;
-    }
-
-    public Company(CompanyPK companyPK, String cName, int cvr, int numemployees, int marketvalue) {
-        this.companyPK = companyPK;
+    public Company(String cName, int cvr, int numemployees, int marketvalue) {
         this.cName = cName;
         this.cvr = cvr;
         this.numemployees = numemployees;
         this.marketvalue = marketvalue;
-    }
-
-    public Company(int cId, String email) {
-        this.companyPK = new CompanyPK(cId, email);
-    }
-
-    public CompanyPK getCompanyPK() {
-        return companyPK;
-    }
-
-    public void setCompanyPK(CompanyPK companyPK) {
-        this.companyPK = companyPK;
     }
 
     public String getCName() {
@@ -132,28 +114,8 @@ public class Company implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (companyPK != null ? companyPK.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Company)) {
-            return false;
-        }
-        Company other = (Company) object;
-        if ((this.companyPK == null && other.companyPK != null) || (this.companyPK != null && !this.companyPK.equals(other.companyPK))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
     public String toString() {
-        return "entities.Company[ companyPK=" + companyPK + " ]";
+        return "entities.Company[ id=" + this.getId() + " ]";
     }
-    
+
 }
