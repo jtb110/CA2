@@ -1,2 +1,5 @@
 /nbproject/private/
 nbproject/project.properties
+*.properties
+nbproject/ant-deploy.xml
+nbproject/project.xml
