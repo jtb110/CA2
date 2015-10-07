@@ -8,13 +8,9 @@ package entities;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -25,8 +21,8 @@ import javax.persistence.Table;
 @Table(name = "companies")
 @NamedQueries({
     @NamedQuery(name = "Company.findAll", query = "SELECT c FROM Company c"),
-    @NamedQuery(name = "Company.findByCId", query = "SELECT c FROM Company c WHERE c.companyPK.Id = :Id"),
-    @NamedQuery(name = "Company.findByEmail", query = "SELECT c FROM Company c WHERE c.companyPK.email = :email"),
+    @NamedQuery(name = "Company.findById", query = "SELECT c FROM Company c WHERE c.id = :Id"),
+    @NamedQuery(name = "Company.findByEmail", query = "SELECT c FROM Company c WHERE c.email = :email"),
     @NamedQuery(name = "Company.findByCName", query = "SELECT c FROM Company c WHERE c.cName = :cName"),
     @NamedQuery(name = "Company.findByDescription", query = "SELECT c FROM Company c WHERE c.description = :description"),
     @NamedQuery(name = "Company.findByCvr", query = "SELECT c FROM Company c WHERE c.cvr = :cvr"),
@@ -49,11 +45,11 @@ public class Company extends Infoentity implements Serializable {
     @Basic(optional = false)
     @Column(name = "marketvalue")
     private int marketvalue;
-    @JoinColumns({
-        @JoinColumn(name = "c_id", referencedColumnName = "ie_id", insertable = false, updatable = false),
-        @JoinColumn(name = "email", referencedColumnName = "email", insertable = false, updatable = false)})
-    @OneToOne(optional = false)
-    private Infoentity infoentity;
+//    @JoinColumns({
+//        @JoinColumn(name = "id", referencedColumnName = "id", insertable = false, updatable = false),
+//        @JoinColumn(name = "email", referencedColumnName = "email", insertable = false, updatable = false)})
+//    @OneToOne(optional = false)
+//    private Infoentity infoentity;
 
     public Company() {
     }
@@ -105,17 +101,16 @@ public class Company extends Infoentity implements Serializable {
         this.marketvalue = marketvalue;
     }
 
-    public Infoentity getInfoentity() {
-        return infoentity;
-    }
+  
 
-    public void setInfoentity(Infoentity infoentity) {
-        this.infoentity = infoentity;
-    }
+//    @Override
+//    public String toString() {
+//        return "entities.Company[ id=" + this.getId() + " ]";
+//    }
 
     @Override
     public String toString() {
-        return "entities.Company[ id=" + this.getId() + " ]";
+        return "Company{ id=" +this.getId() + ", email=" + this.getEmail() + ", cName=" + cName + ", description=" + description + ", cvr=" + cvr + ", numemployees=" + numemployees + ", marketvalue=" + marketvalue + '}';
     }
 
 }

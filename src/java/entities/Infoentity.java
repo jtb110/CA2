@@ -6,7 +6,10 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,8 +17,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -26,23 +31,33 @@ import javax.persistence.Table;
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "infoentities")
 @NamedQueries({
+    
     @NamedQuery(name = "Infoentity.findAll", query = "SELECT i FROM Infoentity i"),
-    @NamedQuery(name = "Infoentity.findByIeId", query = "SELECT i FROM Infoentity i WHERE i.infoentityPK.Id = :Id"),
-    @NamedQuery(name = "Infoentity.findByEmail", query = "SELECT i FROM Infoentity i WHERE i.infoentityPK.email = :email")})
+    @NamedQuery(name = "Infoentity.findById", query = "SELECT i FROM Infoentity i WHERE i.id = :Id")
+//    @NamedQuery(name = "Infoentity.findByEmail", query = "SELECT i FROM Infoentity i WHERE i.email = :email")
+})
 public class Infoentity implements Serializable {
-
     @Id
     @GeneratedValue(strategy
             = GenerationType.AUTO)
     @Basic(optional = false)
     @Column(name = "id")
     private Long id;
-    @Id
     @Basic(optional = false)
     @Column(name = "email")
     private String email;
- //Getters Setters
-
+    
+    @OneToMany
+    @JoinColumn(name = "xx")
+    private Collection<Phone> phones = new ArrayList();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "infoentity")
+    private Collection<Address> addresses;
+    
+    
+    
+    public void setAddressCollection(Collection<Address> addressCollection) {
+        this.addresses = addressCollection;
+    }
     public Infoentity() {
     }
     public Infoentity(String email) {

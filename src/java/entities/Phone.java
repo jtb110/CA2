@@ -25,6 +25,7 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "Phone.findAll", query = "SELECT p FROM Phone p"),
     @NamedQuery(name = "Phone.findByPhonenumber", query = "SELECT p FROM Phone p WHERE p.phonenumber = :phonenumber"),
+    @NamedQuery(name = "Phone.findByInfoId", query = "SELECT p FROM Phone p WHERE p.infoentity.id = :id"),
     @NamedQuery(name = "Phone.findByDescription", query = "SELECT p FROM Phone p WHERE p.description = :description")})
 public class Phone implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -34,8 +35,8 @@ public class Phone implements Serializable {
     private Integer phonenumber;
     @Column(name = "description")
     private String description;
-    @JoinColumn(name = "owner", referencedColumnName = "ie_id")
-    @ManyToOne(optional = false)
+//    @JoinColumn(name = "owner", referencedColumnName = "infoentity.id")
+//    @ManyToOne(optional = false)
     private Infoentity infoentity;
 
     public Phone() {

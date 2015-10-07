@@ -34,11 +34,22 @@ public class Address implements Serializable {
     private String street;
     @Column(name = "additionalInfo")
     private String additionalInfo;
-    @JoinColumn(name = "zipcode", referencedColumnName = "zipcode")
+    @JoinColumn(name = "zip", referencedColumnName = "zip")
     @ManyToOne(optional = false)
     private Cityinfo cityinfo;
+    @JoinColumn(name = "id", referencedColumnName = "infoentity.id")
+    @ManyToOne(optional = false)
+    private Infoentity infoentity;
 
     public Address() {
+    }
+
+    public Infoentity getInfoentity() {
+        return infoentity;
+    }
+
+    public void setInfoentity(Infoentity infoentity) {
+        this.infoentity = infoentity;
     }
 
     public Address(String street) {
