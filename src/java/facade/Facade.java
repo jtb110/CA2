@@ -5,10 +5,17 @@
  */
 package facade;
 
+import entities.Person;
+
 /**
  *
  * @author noncowi
  */
 public class Facade {
     
+    
+    Person getperson (int id){
+        return null;
+        
+    }
 }

@@ -28,12 +28,11 @@ import javax.persistence.Table;
 @Table(name = "persons")
 @NamedQueries({
     @NamedQuery(name = "Person.findAll", query = "SELECT p FROM Person p"),
-    @NamedQuery(name = "Person.findByPId", query = "SELECT p FROM Person p WHERE p.pId = :pId"),
+    @NamedQuery(name = "Person.findByPId", query = "SELECT p FROM Person p WHERE p.Id = :Id"),
     @NamedQuery(name = "Person.findByFirstname", query = "SELECT p FROM Person p WHERE p.firstname = :firstname"),
     @NamedQuery(name = "Person.findByLastname", query = "SELECT p FROM Person p WHERE p.lastname = :lastname")})
 public class Person extends Infoentity implements Serializable {
 
-    private static final long serialVersionUID = 1L;
     @Basic(optional = false)
     @Column(name = "firstname")
     private String firstname;

@@ -6,6 +6,8 @@
 package entities;
 
 import java.io.Serializable;
+import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,18 +27,26 @@ import javax.persistence.Table;
 @Table(name = "infoentities")
 @NamedQueries({
     @NamedQuery(name = "Infoentity.findAll", query = "SELECT i FROM Infoentity i"),
-    @NamedQuery(name = "Infoentity.findByIeId", query = "SELECT i FROM Infoentity i WHERE i.infoentityPK.ieId = :ieId"),
+    @NamedQuery(name = "Infoentity.findByIeId", query = "SELECT i FROM Infoentity i WHERE i.infoentityPK.Id = :Id"),
     @NamedQuery(name = "Infoentity.findByEmail", query = "SELECT i FROM Infoentity i WHERE i.infoentityPK.email = :email")})
 public class Infoentity implements Serializable {
- @Id
- @GeneratedValue(strategy =
-GenerationType.AUTO)
- private Long id;
- private String email;
+
+    @Id
+    @GeneratedValue(strategy
+            = GenerationType.AUTO)
+    @Basic(optional = false)
+    @Column(name = "id")
+    private Long id;
+    @Id
+    @Basic(optional = false)
+    @Column(name = "email")
+    private String email;
  //Getters Setters
 
-
     public Infoentity() {
+    }
+    public Infoentity(String email) {
+        this.email=email;
     }
 
     public Long getId() {
@@ -79,5 +89,5 @@ GenerationType.AUTO)
     public String toString() {
         return "entities.Infoentity[ id=" + id + " ]";
     }
-    
+
 }

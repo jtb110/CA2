@@ -25,7 +25,7 @@ import javax.persistence.Table;
 @Table(name = "companies")
 @NamedQueries({
     @NamedQuery(name = "Company.findAll", query = "SELECT c FROM Company c"),
-    @NamedQuery(name = "Company.findByCId", query = "SELECT c FROM Company c WHERE c.companyPK.cId = :cId"),
+    @NamedQuery(name = "Company.findByCId", query = "SELECT c FROM Company c WHERE c.companyPK.Id = :Id"),
     @NamedQuery(name = "Company.findByEmail", query = "SELECT c FROM Company c WHERE c.companyPK.email = :email"),
     @NamedQuery(name = "Company.findByCName", query = "SELECT c FROM Company c WHERE c.cName = :cName"),
     @NamedQuery(name = "Company.findByDescription", query = "SELECT c FROM Company c WHERE c.description = :description"),
@@ -34,7 +34,7 @@ import javax.persistence.Table;
     @NamedQuery(name = "Company.findByMarketvalue", query = "SELECT c FROM Company c WHERE c.marketvalue = :marketvalue")})
 public class Company extends Infoentity implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+//    private static final long serialVersionUID = 1L;
     @Basic(optional = false)
     @Column(name = "c_name")
     private String cName;
