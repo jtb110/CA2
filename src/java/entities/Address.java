@@ -7,10 +7,11 @@ package entities;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -34,26 +35,37 @@ public class Address implements Serializable {
     private String street;
     @Column(name = "additionalInfo")
     private String additionalInfo;
-    @JoinColumn(name = "zip", referencedColumnName = "zip")
-    @ManyToOne(optional = false)
-    private Cityinfo cityinfo;
-    @JoinColumn(name = "id", referencedColumnName = "infoentity.id")
-    @ManyToOne(optional = false)
-    private Infoentity infoentity;
+    @ManyToOne(fetch=FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.PERSIST})
+    private InfoEntity infoEntities;
+    
+    @ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
+    private CityInfo city;
+
+    public InfoEntity getInfoEntities() {
+        return infoEntities;
+    }
+
+    public void setInfoEntities(InfoEntity infoEntities) {
+        this.infoEntities = infoEntities;
+    }
+
+    public CityInfo getCity() {
+        return city;
+    }
+
+    public void setCity(CityInfo city) {
+        this.city = city;
+    }
 
     public Address() {
     }
 
-    public Infoentity getInfoentity() {
-        return infoentity;
-    }
-
-    public void setInfoentity(Infoentity infoentity) {
-        this.infoentity = infoentity;
-    }
-
     public Address(String street) {
         this.street = street;
+    }
+    public Address(String street,String additionalInfo) {
+        this.street = street;
+        this.additionalInfo=additionalInfo;
     }
 
     public String getStreet() {
@@ -72,13 +84,6 @@ public class Address implements Serializable {
         this.additionalInfo = additionalInfo;
     }
 
-    public Cityinfo getCityinfo() {
-        return cityinfo;
-    }
-
-    public void setCityinfo(Cityinfo cityinfo) {
-        this.cityinfo = cityinfo;
-    }
 
     @Override
     public int hashCode() {
