@@ -27,7 +27,7 @@ import javax.persistence.Table;
     @NamedQuery(name = "Person.findById", query = "SELECT p FROM Person p WHERE p.id = :Id"),
     @NamedQuery(name = "Person.findByFirstname", query = "SELECT p FROM Person p WHERE p.firstname = :firstname"),
     @NamedQuery(name = "Person.findByLastname", query = "SELECT p FROM Person p WHERE p.lastname = :lastname")})
-public class Person extends InfoEntity implements Serializable {
+public class Person extends Infoentity implements Serializable {
 
     @Basic(optional = false)
     @Column(name = "firstname")

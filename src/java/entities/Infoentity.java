@@ -47,6 +47,7 @@ public class Infoentity implements Serializable {
     @Column(name = "email")
     private String email;
     
+    
     @OneToMany
     @JoinColumn(name = "xx")
     private Collection<Phone> phones = new ArrayList();
