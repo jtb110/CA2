@@ -24,10 +24,11 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "cityinfos")
-//@NamedQueries({
+@NamedQueries({
 //    @NamedQuery(name = "Cityinfo.findAll", query = "SELECT c FROM Cityinfo c"),
-//    @NamedQuery(name = "Cityinfo.findByZipcode", query = "SELECT c FROM Cityinfo c WHERE c.zip = :zip"),
-//    @NamedQuery(name = "Cityinfo.findByCity", query = "SELECT c FROM Cityinfo c WHERE c.city = :city")})
+    @NamedQuery(name = "CityInfo.findByZip", query = "SELECT c FROM CityInfo c WHERE c.zip = :zip")
+//    @NamedQuery(name = "Cityinfo.findByCity", query = "SELECT c FROM Cityinfo c WHERE c.city = :city")
+})
 public class CityInfo implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

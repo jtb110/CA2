@@ -35,11 +35,22 @@ public class Address implements Serializable {
     private String street;
     @Column(name = "additionalInfo")
     private String additionalInfo;
-    @ManyToOne(fetch=FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.PERSIST})
+    @ManyToOne
     private InfoEntity infoEntities;
     
-    @ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToOne
     private CityInfo city;
+    
+    public Address() {
+    }
+
+    public Address(String street) {
+        this.street = street;
+    }
+    public Address(String street,String additionalInfo) {
+        this.street = street;
+        this.additionalInfo=additionalInfo;
+    }
 
     public InfoEntity getInfoEntities() {
         return infoEntities;
@@ -57,16 +68,6 @@ public class Address implements Serializable {
         this.city = city;
     }
 
-    public Address() {
-    }
-
-    public Address(String street) {
-        this.street = street;
-    }
-    public Address(String street,String additionalInfo) {
-        this.street = street;
-        this.additionalInfo=additionalInfo;
-    }
 
     public String getStreet() {
         return street;
