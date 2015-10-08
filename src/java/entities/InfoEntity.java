@@ -30,12 +30,12 @@ import javax.persistence.Table;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "infoentities")
-@NamedQueries({
-    
-    @NamedQuery(name = "Infoentity.findAll", query = "SELECT i FROM Infoentity i"),
-    @NamedQuery(name = "Infoentity.findById", query = "SELECT i FROM Infoentity i WHERE i.id = :Id")
+//@NamedQueries({
+//    
+//    @NamedQuery(name = "Infoentity.findAll", query = "SELECT i FROM Infoentity i"),
+//    @NamedQuery(name = "Infoentity.findById", query = "SELECT i FROM Infoentity i WHERE i.id = :Id")
 //    @NamedQuery(name = "InfoEntity.findByEmail", query = "SELECT i FROM InfoEntity i WHERE i.email = :email")
-})
+//})
 public class InfoEntity implements Serializable {
     @Id
     @GeneratedValue(strategy
@@ -55,6 +55,22 @@ public class InfoEntity implements Serializable {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "adresses")
     private Collection<Address> addresses;
+
+    public Collection<Phone> getPhones() {
+        return phones;
+    }
+
+    public void addPhones(Phone phone) {
+        this.phones.add(phone);
+    }
+
+    public Collection<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void addAddresses(Address address) {
+        this.addresses.add(address);
+    }
     
     
     

@@ -24,15 +24,15 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "cityinfos")
-@NamedQueries({
-    @NamedQuery(name = "Cityinfo.findAll", query = "SELECT c FROM Cityinfo c"),
-    @NamedQuery(name = "Cityinfo.findByZipcode", query = "SELECT c FROM Cityinfo c WHERE c.zip = :zip"),
-    @NamedQuery(name = "Cityinfo.findByCity", query = "SELECT c FROM Cityinfo c WHERE c.city = :city")})
+//@NamedQueries({
+//    @NamedQuery(name = "Cityinfo.findAll", query = "SELECT c FROM Cityinfo c"),
+//    @NamedQuery(name = "Cityinfo.findByZipcode", query = "SELECT c FROM Cityinfo c WHERE c.zip = :zip"),
+//    @NamedQuery(name = "Cityinfo.findByCity", query = "SELECT c FROM Cityinfo c WHERE c.city = :city")})
 public class CityInfo implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "zipcode")
+    @Column(name = "zip")
     private Integer zip;
     @Basic(optional = false)
     @Column(name = "city")
@@ -74,8 +74,8 @@ public class CityInfo implements Serializable {
         return addressCollection;
     }
 
-    public void setAddressCollection(Collection<Address> addressCollection) {
-        this.addressCollection = addressCollection;
+    public void addAddresses(Address address) {
+        this.addressCollection.add(address);
     }
 
     @Override

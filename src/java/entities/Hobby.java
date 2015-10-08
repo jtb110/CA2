@@ -26,11 +26,11 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "hobbies")
-@NamedQueries({
-    @NamedQuery(name = "Hobby.findAll", query = "SELECT h FROM Hobby h"),
-    @NamedQuery(name = "Hobby.findByHId", query = "SELECT h FROM Hobby h WHERE h.hId = :hId"),
-    @NamedQuery(name = "Hobby.findByHName", query = "SELECT h FROM Hobby h WHERE h.hName = :hName"),
-    @NamedQuery(name = "Hobby.findByDescription", query = "SELECT h FROM Hobby h WHERE h.description = :description")})
+//@NamedQueries({
+//    @NamedQuery(name = "Hobby.findAll", query = "SELECT h FROM Hobby h"),
+//    @NamedQuery(name = "Hobby.findByHId", query = "SELECT h FROM Hobby h WHERE h.hId = :hId"),
+//    @NamedQuery(name = "Hobby.findByHName", query = "SELECT h FROM Hobby h WHERE h.hName = :hName"),
+//    @NamedQuery(name = "Hobby.findByDescription", query = "SELECT h FROM Hobby h WHERE h.description = :description")})
 public class Hobby implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

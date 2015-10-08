@@ -23,10 +23,10 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "address")
-@NamedQueries({
-    @NamedQuery(name = "Address.findAll", query = "SELECT a FROM Address a"),
-    @NamedQuery(name = "Address.findByStreet", query = "SELECT a FROM Address a WHERE a.street = :street"),
-    @NamedQuery(name = "Address.findByAdditionalInfo", query = "SELECT a FROM Address a WHERE a.additionalInfo = :additionalInfo")})
+//@NamedQueries({
+//    @NamedQuery(name = "Address.findAll", query = "SELECT a FROM Address a"),
+//    @NamedQuery(name = "Address.findByStreet", query = "SELECT a FROM Address a WHERE a.street = :street"),
+//    @NamedQuery(name = "Address.findByAdditionalInfo", query = "SELECT a FROM Address a WHERE a.additionalInfo = :additionalInfo")})
 public class Address implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
