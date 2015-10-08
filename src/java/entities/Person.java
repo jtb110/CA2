@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
@@ -36,8 +37,16 @@ public class Person extends InfoEntity implements Serializable {
     @Basic(optional = false)
     @Column(name = "lastname")
     private String lastname;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     private List<Hobby> hobbylist = new ArrayList();
+
+    public List<Hobby> getHobbylist() {
+        return hobbylist;
+    }
+
+    public void addHobby(Hobby hobby) {
+        this.hobbylist.add(hobby);
+    }
 
     public Person() {
     }

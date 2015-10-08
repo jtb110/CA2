@@ -10,6 +10,7 @@ package facade;
 import entities.Address;
 import entities.CityInfo;
 import entities.Company;
+import entities.Hobby;
 import entities.InfoEntity;
 import entities.Person;
 import entities.Phone;
@@ -34,18 +35,28 @@ public class Facade {
         return (CityInfo)query.getSingleResult();
     }
     
-    public void createPerson(String email, String firstName, String lastName) {
+    public void createPerson(String email, String firstName, String lastName, Address address, int zip, Phone phone, Hobby hobby) {
         EntityManager em = emf.createEntityManager();
 
         Person p = new Person(email, firstName, lastName);
+        address.setCity(getCityInfoByZip(zip));
+        p.addAddresses(address);
+        p.addPhones(phone);
+        p.addHobby(hobby);
+        
         em.getTransaction().begin();
         em.persist(p);
         em.getTransaction().commit();
 
     }
-    public Person createPerson(Person p) {
+    public Person createPerson(Person p, Address address, int zip, Phone phone, Hobby hobby) {
         EntityManager em = emf.createEntityManager();
-
+        
+        address.setCity(getCityInfoByZip(zip));
+        p.addAddresses(address);
+        p.addPhones(phone);
+        p.addHobby(hobby);
+        
         em.getTransaction().begin();
         em.persist(p);
         em.getTransaction().commit();
@@ -109,13 +120,9 @@ public class Facade {
 //        System.out.println(p2.getAddresses());
         
         Person p =  new Person("humli@gumli.dk", "hej", "svend");
-        Address adress = new Address("tyroler stræde 5");
-        CityInfo city = facade.getCityInfoByZip(8210);
-        adress.setCity(city);
-        p.addAddresses(adress);
-        Phone phone = new Phone(12345678);
-        p.addPhones(phone);
-        facade.createPerson(p);
-
+        Address adress = new Address("tyroler stræde DAS54h 5");
+        Phone phone = new Phone(12345674);
+        Hobby hobby = new Hobby(1,"neger dræber");
+        facade.createPerson(p,adress,8210,phone,hobby);
     }
 }
