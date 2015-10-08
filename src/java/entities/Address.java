@@ -36,24 +36,24 @@ public class Address implements Serializable {
     @Column(name = "additionalInfo")
     private String additionalInfo;
     @ManyToOne(fetch=FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.PERSIST})
-    private Infontityerrkejrekjk infoEntities;
+    private InfoEntity infoEntities;
     
     @ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
-    private Skinkebasse city;
+    private CityInfo city;
 
-    public Infontityerrkejrekjk getInfoEntities() {
+    public InfoEntity getInfoEntities() {
         return infoEntities;
     }
 
-    public void setInfoEntities(Infontityerrkejrekjk infoEntities) {
+    public void setInfoEntities(InfoEntity infoEntities) {
         this.infoEntities = infoEntities;
     }
 
-    public Skinkebasse getCity() {
+    public CityInfo getCity() {
         return city;
     }
 
-    public void setCity(Skinkebasse city) {
+    public void setCity(CityInfo city) {
         this.city = city;
     }
 

@@ -34,9 +34,9 @@ import javax.persistence.Table;
     
     @NamedQuery(name = "Infoentity.findAll", query = "SELECT i FROM Infoentity i"),
     @NamedQuery(name = "Infoentity.findById", query = "SELECT i FROM Infoentity i WHERE i.id = :Id")
-//    @NamedQuery(name = "Infontityerrkejrekjk.findByEmail", query = "SELECT i FROM Infontityerrkejrekjk i WHERE i.email = :email")
+//    @NamedQuery(name = "InfoEntity.findByEmail", query = "SELECT i FROM InfoEntity i WHERE i.email = :email")
 })
-public class Infontityerrkejrekjk implements Serializable {
+public class InfoEntity implements Serializable {
     @Id
     @GeneratedValue(strategy
             = GenerationType.AUTO)
@@ -61,9 +61,9 @@ public class Infontityerrkejrekjk implements Serializable {
     public void setAddressCollection(Collection<Address> addressCollection) {
         this.addresses = addressCollection;
     }
-    public Infontityerrkejrekjk() {
+    public InfoEntity() {
     }
-    public Infontityerrkejrekjk(String email) {
+    public InfoEntity(String email) {
         this.email=email;
     }
 
@@ -93,10 +93,10 @@ public class Infontityerrkejrekjk implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Infontityerrkejrekjk)) {
+        if (!(object instanceof InfoEntity)) {
             return false;
         }
-        Infontityerrkejrekjk other = (Infontityerrkejrekjk) object;
+        InfoEntity other = (InfoEntity) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
