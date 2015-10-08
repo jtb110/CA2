@@ -34,9 +34,9 @@ import javax.persistence.Table;
     
     @NamedQuery(name = "Infoentity.findAll", query = "SELECT i FROM Infoentity i"),
     @NamedQuery(name = "Infoentity.findById", query = "SELECT i FROM Infoentity i WHERE i.id = :Id")
-//    @NamedQuery(name = "Infoentity.findByEmail", query = "SELECT i FROM Infoentity i WHERE i.email = :email")
+//    @NamedQuery(name = "Infontityerrkejrekjk.findByEmail", query = "SELECT i FROM Infontityerrkejrekjk i WHERE i.email = :email")
 })
-public class Infoentity implements Serializable {
+public class Infontityerrkejrekjk implements Serializable {
     @Id
     @GeneratedValue(strategy
             = GenerationType.AUTO)
@@ -49,10 +49,11 @@ public class Infoentity implements Serializable {
     
     
     @OneToMany
-    @JoinColumn(name = "xx")
+    @JoinColumn(name = "phone")
     private Collection<Phone> phones = new ArrayList();
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "infoentity")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "adresses")
     private Collection<Address> addresses;
     
     
@@ -60,9 +61,9 @@ public class Infoentity implements Serializable {
     public void setAddressCollection(Collection<Address> addressCollection) {
         this.addresses = addressCollection;
     }
-    public Infoentity() {
+    public Infontityerrkejrekjk() {
     }
-    public Infoentity(String email) {
+    public Infontityerrkejrekjk(String email) {
         this.email=email;
     }
 
@@ -92,10 +93,10 @@ public class Infoentity implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Infoentity)) {
+        if (!(object instanceof Infontityerrkejrekjk)) {
             return false;
         }
-        Infoentity other = (Infoentity) object;
+        Infontityerrkejrekjk other = (Infontityerrkejrekjk) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

@@ -7,10 +7,11 @@ package entities;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -35,9 +36,6 @@ public class Phone implements Serializable {
     private Integer phonenumber;
     @Column(name = "description")
     private String description;
-//    @JoinColumn(name = "owner", referencedColumnName = "infoentity.id")
-//    @ManyToOne(optional = false)
-    private Infoentity infoentity;
 
     public Phone() {
     }
@@ -60,14 +58,6 @@ public class Phone implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Infoentity getInfoentity() {
-        return infoentity;
-    }
-
-    public void setInfoentity(Infoentity infoentity) {
-        this.infoentity = infoentity;
     }
 
     @Override

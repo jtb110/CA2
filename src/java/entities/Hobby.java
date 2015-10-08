@@ -43,6 +43,7 @@ public class Hobby implements Serializable {
     private String hName;
     @Column(name = "description")
     private String description;
+    
     @ManyToMany(mappedBy="hobbylist")
     private List<Person> persons = new ArrayList();
 

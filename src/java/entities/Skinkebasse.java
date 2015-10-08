@@ -12,6 +12,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -27,7 +28,7 @@ import javax.persistence.Table;
     @NamedQuery(name = "Cityinfo.findAll", query = "SELECT c FROM Cityinfo c"),
     @NamedQuery(name = "Cityinfo.findByZipcode", query = "SELECT c FROM Cityinfo c WHERE c.zip = :zip"),
     @NamedQuery(name = "Cityinfo.findByCity", query = "SELECT c FROM Cityinfo c WHERE c.city = :city")})
-public class Cityinfo implements Serializable {
+public class Skinkebasse implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -36,17 +37,19 @@ public class Cityinfo implements Serializable {
     @Basic(optional = false)
     @Column(name = "city")
     private String city;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cityinfo")
+    
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "addresses")
     private Collection<Address> addressCollection;
 
-    public Cityinfo() {
+    public Skinkebasse() {
     }
 
-    public Cityinfo(Integer zipcode) {
+    public Skinkebasse(Integer zipcode) {
         this.zip = zipcode;
     }
 
-    public Cityinfo(Integer zipcode, String city) {
+    public Skinkebasse(Integer zipcode, String city) {
         this.zip = zipcode;
         this.city = city;
     }
@@ -85,10 +88,10 @@ public class Cityinfo implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Cityinfo)) {
+        if (!(object instanceof Skinkebasse)) {
             return false;
         }
-        Cityinfo other = (Cityinfo) object;
+        Skinkebasse other = (Skinkebasse) object;
         if ((this.zip == null && other.zip != null) || (this.zip != null && !this.zip.equals(other.zip))) {
             return false;
         }
