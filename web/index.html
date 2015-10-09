@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>CA2</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    </head>
+    <body>
+        <div>NU SKAL VI I GANG!!!</div>
+
+
+
+
+        <input id="create-person-fname" type="text" name="test" value="" />
+
+        <input id="get-person" type="submit" value="Search" />
+        
+
+
+
+
+
+
+        <script>
+         
+
+            $("#get-person").on('click', function () {
+                apiGET('/api/person/complete/');
+            });
+
+            function apiGET(url) {
+                $.ajax({
+                    url: "api/person/complete",
+                    type: 'GET',
+                    contentType: "application/json",
+                    dataType: "json"
+
+                });
+            }
+            function personsLoaded200(data) {
+                console.log(data);
+                $("#person-table tbody").html("");
+                for (var i = 0, max = data.length; i < max; i++) {
+                    $("#person-table tbody")
+                            .append(
+                                    '<tr id="person-' + data[i].id + '">'
+                                    + '<td>' + data[i].id + '</td>'
+                                    + '<td>' + data[i].firstname + '</td>'
+                                    + '<td>' + data[i].lastname + '</td>'
+                                    + '<td class="text-center">' + '<a class="delete label label-default" id="delete-' + data[i].id + '">Delete</a>' + '</td>'
+                                    + '</tr>'
+                                    );
+                }
+            }
+
+
+//            $("#create-person").on('click', function () {
+//                var generatedJSON = {
+//                    firstname: $("#create-person-fname").val(),
+//                    lastname: $("#create-person-lname").val(),
+//                    email: $("#create-person-email").val()};
+//                apiPOST('http://localhost:8084/api/person/', generatedJSON);
+//            });
+//            function apiPOST(url, obj) {
+//            $.ajax(url, {
+//            data: JSON.stringify(obj),
+//                    contentType: 'application/json',
+//                    type: 'POST',
+//                    async: true
+//            
+//            });
+//            }
+        </script>
+    </body>
+
+</html>
