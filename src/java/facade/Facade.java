@@ -7,6 +7,7 @@ package facade;
 
 //import entities.Company;
 //import entities.Person;
+import deploy.DeploymentConfiguration;
 import entities.Address;
 import entities.CityInfo;
 import entities.Company;
@@ -25,7 +26,8 @@ import javax.persistence.Query;
  */
 public class Facade {
 
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("CA2PU");
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory(DeploymentConfiguration.PU_NAME)
+;
 
     public CityInfo getCityInfoByZip(int zip){
         EntityManager em = emf.createEntityManager();
